@@ -1,0 +1,2 @@
+token = '5458846375:AAFSM_1I27n7bvPCXiDAgNeY6nRxHDCeVM0'
+queryto_id = 362640034
