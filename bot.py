@@ -14,7 +14,10 @@ def welcome(message):
     item2 = types.KeyboardButton("Русский 🇷🇺")
     item3 = types.KeyboardButton("Украïнська 🇺🇦")
     lang_menu.add(item2, item3)
-    bot.send_message(message.chat.id, 'Выбери язык в меню'.format(
+    bot.send_message(message.chat.id, '''Выбери язык в меню
+________________
+
+Вибери мову в меню'''.format(
         message.from_user, bot.get_me()), parse_mode='html', reply_markup=lang_menu)
 
 @bot.message_handler(commands=['send_query'])
@@ -28,8 +31,9 @@ def send_query_mode(message):
 def russian(message):
     global rus_menu1
     rus_menu1 = types.ReplyKeyboardMarkup(resize_keyboard=True)
-    rus_menu1.add('Мне нужна помощь', 'Я хочу помочь',
-                    'Оставить запрос', 'Назад')
+    rus_menu1.row('Мне нужна помощь', 'Я хочу помочь')
+    rus_menu1.row('Оставить запрос', 'Назад')
+
     bot.send_message(
         message.chat.id, '''Приветствуем в napryamok_bot! 
 
@@ -94,8 +98,10 @@ def needhelp_ua_help(message):
 @bot.message_handler(func = lambda message: message.text == "Я в другой стране")
 def needhelp_elsewhere(message):
     rus_menu4 = types.ReplyKeyboardMarkup(True, True)
-    rus_menu4.add('Страны, граничащие с Украиной', 'Остальные страны', 'Назад')
-    bot.send_message(message.chat.id, 'Выберите вид помощи в Украине', reply_markup=rus_menu4)
+    rus_menu4.row('Страны, граничащие с Украиной')
+    rus_menu4.row('Остальные страны', 'Назад')
+
+    bot.send_message(message.chat.id, 'В какой?', reply_markup=rus_menu4)
 
 # мне нужна помощь -> я в другой стране -> страны, граничащие с украиной
 @bot.message_handler(func = lambda message: message.text == "Страны, граничащие с Украиной")
@@ -146,7 +152,8 @@ def russia(message):
 def wannahelp(message):
     global rus_menu6
     rus_menu6 = types.ReplyKeyboardMarkup(True, True)
-    rus_menu6.add('В Украине', 'Из-за границы', 'Хочу добавить ресурс', 'Назад')
+    rus_menu6.row('В Украине', 'Из-за границы')
+    rus_menu6.row('Хочу добавить ресурс', 'Назад')
 
     bot.send_message(message.chat.id, 'Как вы хотите помочь?', reply_markup=rus_menu6)
 
@@ -198,7 +205,8 @@ def returning(message):
 def ukranian(message):
     global ua_menu1
     ua_menu1 = types.ReplyKeyboardMarkup(resize_keyboard=True)
-    ua_menu1.add('Мені потрібна допомога', 'Я хочу допомогти','Залишити запит', 'Назад')
+    ua_menu1.row('Мені потрібна допомога', 'Я хочу допомогти')
+    ua_menu1.row('Залишити запит', 'Назад')
 
     bot.send_message(
         message.chat.id, '''Вітаємо в napryamok _ bot!
@@ -264,10 +272,10 @@ def ua_needhelp_ua_help(message):
 @bot.message_handler(func = lambda message: message.text == "Я в іншій країні")
 def ua_needhelp_elsewhere(message):
     ua_menu4 = types.ReplyKeyboardMarkup(True, True)
-    ua_menu4.row('Країни, що межують з Україною', 'Інші країни')
-    ua_menu4.row('Назад')
+    ua_menu4.row('Країни, що межують з Україною')
+    ua_menu4.row('Інші країни', 'Назад')
 
-    bot.send_message(message.chat.id, 'Яка допомога вам потрібна?', reply_markup=ua_menu4)
+    bot.send_message(message.chat.id, 'Де?', reply_markup=ua_menu4)
 
 # мне нужна помощь -> я в другой стране -> Країни, що межують з Україною
 @bot.message_handler(func = lambda message: message.text == "Країни, що межують з Україною")
@@ -317,7 +325,9 @@ def ua_russia(message):
 def ua_wannahelp(message):
     global ua_menu6
     ua_menu6 = types.ReplyKeyboardMarkup(True, True)
-    ua_menu6.add('В Україні', 'З-за кордону', 'Хочу додати ресурс', 'Назад')
+    ua_menu6.row('В Україні', 'З-за кордону')
+    ua_menu6.row('Хочу додати ресурс', 'Назад')
+
     bot.send_message(message.chat.id, 'Як ви хочете допомогти?', reply_markup=ua_menu6)
 
 # я хочу помочь -> в украине
